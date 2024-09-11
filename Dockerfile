@@ -36,7 +36,8 @@ ARG YARN_VERSION=4.4.1
 ENV PATH=/usr/local/node/bin:$PATH
 RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
     /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
-    npm install -g yarn@$YARN_VERSION && \
+    corepack enable && \
+    yarn set version ${YARN_VERSION} && \
     rm -rf /tmp/node-build-master
 
 # Install application gems
