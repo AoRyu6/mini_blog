@@ -50,10 +50,7 @@ group :development, :test do
   gem "rubocop-shopify", require: false
   gem "rubocop-rspec", require: false
   gem "rubocop-performance", require: false
-  gem "rubocop-rails", require: false
-  gem "rubocop-rspec_rails", require: false
   gem "rubocop-factory_bot", require: false
-  gem "rubocop-capybara", require: false
 
   gem "rspec-rails"
   gem "faker"
