@@ -18,6 +18,10 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres
+  password: password
+  host: localhost
+  port: 5434
 
 
 development:
@@ -80,6 +84,5 @@ test:
 #
 production:
   <<: *default
-  database: mini_blog_production
-  username: mini_blog
-  password: <%= ENV["MINI_BLOG_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  port: 5432
