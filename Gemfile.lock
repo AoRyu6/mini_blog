@@ -251,8 +251,11 @@ GEM
     rubocop-performance (1.21.1)
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rspec (3.0.5)
-      rubocop (~> 1.61)
+    rubocop-rails (2.26.1)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.52.0, < 2.0)
+      rubocop-ast (>= 1.31.1, < 2.0)
     rubocop-shopify (2.15.1)
       rubocop (~> 1.51)
     ruby-progressbar (1.13.0)
@@ -316,7 +319,7 @@ DEPENDENCIES
   rspec-rails
   rubocop-factory_bot
   rubocop-performance
-  rubocop-rspec
+  rubocop-rails
   rubocop-shopify
   sprockets-rails
   stimulus-rails
