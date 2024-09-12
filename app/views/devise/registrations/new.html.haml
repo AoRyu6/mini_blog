@@ -3,10 +3,10 @@
   = render "devise/shared/error_messages", resource: resource
   .mb-3
     = f.label :name, "名前", class: "form-label"
-    = f.text_field :name, autocomplete: "name", placeholder: "ユーザー名", class: "form-control"
+    = f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ユーザー名", class: "form-control"
   .mb-3
     = f.label :email,"メールアドレス",class: "form-label"
-    = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "miniblog@example.com", class: "form-control"
+    = f.email_field :email,  autocomplete: "email", placeholder: "miniblog@example.com", class: "form-control"
   .mb-3
     = f.label :password, class: "form-label"
     = f.password_field :password, autocomplete: "new-password", class: "form-control"
