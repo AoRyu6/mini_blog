@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 RSpec.describe("Posts", type: :request) do
+  describe "GET /index" do
+    it "レスポンスが200であること" do
+      get posts_path
+      expect(response).to(have_http_status(:ok))
+    end
+  end
+
   describe "POST /create" do
     context "有効な値のとき" do
       it "新しいポストが作成されること" do

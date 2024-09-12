@@ -10,8 +10,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-10.times do
-  Post.create(
-    content: Faker::Lorem.sentence,
+100.times do
+  Post.create!(
+    content: Faker::Books::TheKingkillerChronicle.book,
   )
 end
