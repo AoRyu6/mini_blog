@@ -18,12 +18,16 @@ end
 
 # テスト用ユーザー
 User.create!(
+  name: "user",
   email: "user@example.com",
   password: "password",
 )
 
+# nameはアルファベットのみしか許容しない
 100.times do
+  length = rand(1..20)
   User.create!(
+    name: Faker::Alphanumeric.alpha(number: length),
     email: Faker::Internet.email,
     password: Faker::Internet.password,
   )
