@@ -63,6 +63,16 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+      - run: corepack enable
+      - run: yarn install --frozen-lockfile
+
+      - name: Precompile assets
+        run: bin/rails assets:precompile
+
       - name: Run tests
         env:
           RAILS_ENV: test

@@ -15,4 +15,14 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
   %body
+    %header.navbar.navbar-expand-sm.navbar-light.bg-light
+      .container
+        = link_to "Mini blog", root_path, class: "navbar-brand"
+        %ul.navbar-nav
+          %li.nav-item
+            = link_to "投稿", new_post_path, class: "nav-link"
+  .container
+    - if flash.notice
+      .alert.alert-success
+        = flash.notice
     = yield
