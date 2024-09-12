@@ -23,6 +23,8 @@
             %li.nav-item
               = link_to "投稿", new_post_path, class: "nav-link"
             %li.nav-item
+              = link_to "プロフィール", current_user, class: "nav-link"
+            %li.nav-item
               = button_to "ログアウト", destroy_user_session_path,method: :delete, class: "nav-link"
           - else
             %li.nav-item

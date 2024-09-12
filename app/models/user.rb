@@ -8,6 +8,7 @@ class User < ApplicationRecord
       with: /\A[a-zA-Z]+\z/,
       message: "はアルファベットのみが使えます",
     }
+  validates :biography, length: { maximum: 200 }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

@@ -18,5 +18,9 @@ RSpec.describe(User, type: :model) do
         expect(user.errors[:name]).to(include("はアルファベットのみが使えます"))
       end
     end
+    it "自己紹介文が200字を超えるとエラーになること" do
+      invalid_biography = FactoryBot.build(:user, biography: Faker::Lorem.characters(number: 2001))
+      expect(invalid_biography).to_not(be_valid)
+    end
   end
 end

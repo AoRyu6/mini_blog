@@ -1,0 +1,9 @@
+.mt-5
+  %div.d-flex
+    %i.bi.bi-person-circle.display-4.me-3
+    %div
+      %h3.mb-0= @user.name
+      %span.text-muted= @user.biography
+      = link_to "#", class: "link-primary d-flex" do
+        %span.bi.bi-link-45deg.me-0.text-secondary{ aria: { label: "Link icon" } }
+        blog_url

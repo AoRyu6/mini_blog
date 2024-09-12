@@ -10,18 +10,19 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-100.times do
-  Post.create!(
-    content: Faker::Books::TheKingkillerChronicle.book,
-  )
-end
-
 # テスト用ユーザー
 User.create!(
   name: "user",
   email: "user@example.com",
   password: "password",
+  biography: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true),
 )
+
+100.times do
+  Post.create!(
+    content: Faker::Books::TheKingkillerChronicle.book,
+  )
+end
 
 # nameはアルファベットのみしか許容しない
 100.times do
@@ -30,5 +31,6 @@ User.create!(
     name: Faker::Alphanumeric.alpha(number: length),
     email: Faker::Internet.email,
     password: Faker::Internet.password,
+    biography: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true),
   )
 end
