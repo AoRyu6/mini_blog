@@ -1,8 +1,8 @@
 %h2 Log in
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   .mb-3
-    = f.label :email, class: "form-label"
-    = f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "user@example.com", class: "form-control"
+    = f.label :email,"メールアドレス", class: "form-label"
+    = f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "miniblog@example.com", class: "form-control"
   .mb-3
     = f.label :password, class: "form-label"
     = f.password_field :password, autocomplete: "current-password", class: "form-control"
