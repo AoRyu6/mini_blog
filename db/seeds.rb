@@ -15,3 +15,16 @@
     content: Faker::Books::TheKingkillerChronicle.book,
   )
 end
+
+# テスト用ユーザー
+User.create!(
+  email: "user@example.com",
+  password: "password",
+)
+
+100.times do
+  User.create!(
+    email: Faker::Internet.email,
+    password: Faker::Internet.password,
+  )
+end
