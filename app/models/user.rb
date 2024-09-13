@@ -9,7 +9,7 @@ class User < ApplicationRecord
       message: "はアルファベットのみが使えます",
     }
   validates :biography, length: { maximum: 200 }
-
+  has_many :posts, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,

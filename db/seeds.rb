@@ -21,6 +21,7 @@ User.create!(
 100.times do
   Post.create!(
     content: Faker::Books::TheKingkillerChronicle.book,
+    user_id: 1,
   )
 end
 
