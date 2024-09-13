@@ -35,4 +35,46 @@ RSpec.describe("Users", type: :request) do
       end
     end
   end
+
+  describe "PATCH /edit" do
+    let(:user) { FactoryBot.create(:user) }
+    context "ログインしているとき" do
+      before do
+        @name = "FooBar"
+        @biography = "Hello"
+        @blog_url = "example.com/"
+        sign_in user
+
+        patch user_registration_path, params: {
+          user: {
+            name: @name,
+            biography: @biography,
+            blog_url: @blog_url,
+          },
+        }
+      end
+      it "プロフィールの更新ができること" do
+        user.reload
+        expect(user.name).to(eq(@name))
+        expect(user.biography).to(eq(@biography))
+        expect(user.blog_url).to(eq(@blog_url))
+      end
+    end
+
+    context "ログインしていないとき" do
+      it "プロフィールの更新ができないこと" do
+        @name = "FooBar"
+        @biography = "Hello"
+        @blog_url = "example.com/"
+        patch user_registration_path, params: {
+          user: {
+            name: @name,
+            biography: @biography,
+            blog_url: @blog_url,
+          },
+        }
+        expect(response).to(redirect_to(new_user_session_url))
+      end
+    end
+  end
 end
