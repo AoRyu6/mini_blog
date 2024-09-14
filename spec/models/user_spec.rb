@@ -23,4 +23,22 @@ RSpec.describe(User, type: :model) do
       expect(invalid_biography).to_not(be_valid)
     end
   end
+
+  describe "#relationships" do
+    let(:user) { FactoryBot.create(:user) }
+    let(:other_user) { FactoryBot.create(:user, :archer) }
+    context "正しい値の場合" do
+      it "フォローできること" do
+        user.follow(other_user)
+        expect(user.following?(other_user)).to(be(true))
+        expect(other_user.followers.include?(user)).to(be(true))
+      end
+    end
+    context "無効な値の場合" do
+    end
+    it "自身はフォローできないこと" do
+      user.follow(user)
+      expect(user.following?(user)).to_not(be(true))
+    end
+  end
 end
