@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @pagy, @posts = pagy(Post.all)
+    @pagy, @posts = pagy(Post.includes(:user).all)
   end
 
   def new
