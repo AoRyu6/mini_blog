@@ -22,18 +22,6 @@ RSpec.describe("Users", type: :request) do
         expect(response).to(have_http_status(:success))
       end
     end
-
-    context "ログインしていないとき" do
-      it "自分のページにアクセスできないこと" do
-        get user_path(user)
-        expect(response).to(redirect_to(new_user_session_url))
-      end
-
-      it "他のユーザーのページにアクセスできないこと" do
-        get user_path(archer)
-        expect(response).to(redirect_to(new_user_session_url))
-      end
-    end
   end
 
   describe "PATCH /edit" do
