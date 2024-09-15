@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   def index
     @pagy, @posts = if params[:filter] == "following"
       # フォロー中のユーザーのポストのみ取得
-      pagy(Post.where(user_id: current_user.following_ids).order(created_at: :desc))
+      pagy(Post.includes([:user]).where(user_id: current_user.following_ids).order(created_at: :desc))
     else
       # すべてのポストを取得
       pagy(Post.includes(:user).order(created_at: :desc))
