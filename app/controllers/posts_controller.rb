@@ -11,6 +11,11 @@ class PostsController < ApplicationController
       # すべてのポストを取得
       pagy(Post.includes(:user).order(created_at: :desc))
     end
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def new
