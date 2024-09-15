@@ -5,8 +5,8 @@
   %div.row.justify-content-center
     %div.col-md-8
       %div
-        = link_to "全ての投稿", posts_path, class: "btn btn-secondary"
-        = link_to "フォロー中", posts_path(filter: "following"), class: "btn btn-primary"
+        = link_to "All Posts", posts_path, class: "btn btn-secondary"
+        = link_to "Following", posts_path(filter: "following"), class: "btn btn-primary"
       %ul.list-group.shadow-sm
         - @posts.each do |post|
           .list-group-item.list-group-item-action.border-0.mb-3.rounded
@@ -16,5 +16,5 @@
                 %p.text-muted.mb-1= post.content
               %div.text-end
                 %time.text-muted.small{ datetime: post.created_at.to_fs(:iso8601) }= l(post.created_at, format: :long)
-      -# .mt-4
-      -#   = pagy_bootstrap_nav(@pagy).html_safe
+      .mt-4
+        = pagy_bootstrap_nav(@pagy).html_safe
