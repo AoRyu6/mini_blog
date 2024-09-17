@@ -9,19 +9,28 @@ RSpec.describe("Posts", type: :request) do
   end
 
   describe "POST /create" do
-    context "有効な値のとき" do
+    context "ログインしているとき" do
+      let(:user) { FactoryBot.create(:user) }
+
       it "新しいポストが作成されること" do
+        sign_in user
         expect do
           post(posts_path, params: { post: { content: Faker::Lorem.characters(number: 140) } })
         end.to(change(Post, :count).by(1))
       end
-    end
-
-    context "無効な値のとき" do
-      it "ポストが作成されないこと" do
+      it "140字以上のときはポストが作成されないこと" do
         expect do
           post(posts_path, params: { post: { content: Faker::Lorem.characters(number: 141) } })
         end.not_to(change(Post, :count))
+      end
+    end
+
+    context "未ログインのとき" do
+      it "ポストが作成されないこと" do
+        expect do
+          post(posts_path, params: { post: { content: Faker::Lorem.characters(number: 140) } })
+        end.not_to(change(Post, :count))
+        expect(response).to(redirect_to(new_user_session_url))
       end
     end
   end

@@ -10,8 +10,37 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+users = User.all
+
+# テスト用ユーザー
+User.create!(
+  name: "user",
+  email: "user@example.com",
+  password: "password",
+  blog_url: "example.com",
+  biography: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true),
+)
+
+# nameはアルファベットのみしか許容しない
 100.times do
-  Post.create!(
-    content: Faker::Books::TheKingkillerChronicle.book,
+  length = rand(1..20)
+  User.create!(
+    name: Faker::Alphanumeric.alpha(number: length),
+    email: Faker::Internet.email,
+    blog_url: Faker::Internet.url,
+    password: Faker::Internet.password,
+    biography: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true),
   )
 end
+
+50.times do
+  content = Faker::Lorem.sentence(word_count: 5)
+  users.each { |user| user.posts.create!(content: content) }
+end
+
+# ユーザーフォローのリレーションシップを作成する
+user = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }

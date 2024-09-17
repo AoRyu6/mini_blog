@@ -19,8 +19,18 @@
       .container
         = link_to "Mini blog", root_path, class: "navbar-brand"
         %ul.navbar-nav
-          %li.nav-item
-            = link_to "投稿", new_post_path, class: "nav-link"
+          - if user_signed_in?
+            %li.nav-item
+              = link_to "投稿", new_post_path, class: "nav-link"
+            %li.nav-item
+              = link_to "プロフィール", current_user, class: "nav-link"
+            %li.nav-item
+              = button_to "ログアウト", destroy_user_session_path,method: :delete, class: "nav-link"
+          - else
+            %li.nav-item
+              = link_to "ログイン", new_user_session_path, class: "nav-link"
+            %li.nav-item
+              = link_to "新規登録", new_user_registration_path, class: "nav-link"
   .container
     - if flash.notice
       .alert.alert-success

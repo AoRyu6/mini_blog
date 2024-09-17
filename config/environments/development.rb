@@ -79,4 +79,8 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   config.generators.apply_rubocop_autocorrect_after_generate!
+
+  config.active_record.strict_loading_by_default = true
+  # config.active_record.strict_loading_mode = :n_plus_one_only
+  config.active_record.action_on_strict_loading_violation = :log
 end
