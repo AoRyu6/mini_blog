@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get "likes/create"
+  get "likes/destroy"
   devise_for :users, controllers: {
     session: "users/session",
     registrations: "users/registrations",
@@ -16,7 +18,11 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   root "posts#index"
-  resources :posts
+
+  resources :posts do
+    resource :like, only: [:create, :destroy]
+  end
+
   resources :users do
     member do
       get :following, :followers
