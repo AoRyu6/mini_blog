@@ -6,18 +6,18 @@
         %div
           %h3.mb-0= @user.name
           %span.text-muted= @user.biography
-          = link_to @user.blog_url.to_s, class: "link-primary d-flex align-items-center" do
+          = link_to(@user.blog_url.to_s, class: "link-primary d-flex align-items-center") do
             %span.bi.bi-link-45deg.me-2.text-secondary{ aria: { label: "Link icon" } }
               = @user.blog_url
-          = render "shared/stats"
-          = render "follow_form" if user_signed_in?
+          = render("shared/stats")
+          = render("follow_form") if user_signed_in?
           - if user_signed_in? && current_user == @user
             .mt-2
-              = link_to "プロフィールの編集", edit_user_registration_path(), class: "btn btn-dark btn-sm"
+              = link_to("プロフィールの編集", edit_user_registration_path, class: "btn btn-dark btn-sm")
     .col-md-8
       %h3= @title
       - if @users.any?
         %ul.users.follow
-          = render @users
+          = render(@users)
         = pagy_bootstrap_nav(@pagy).html_safe
   

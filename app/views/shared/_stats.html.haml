@@ -1,11 +1,11 @@
 - @user ||= current_user
 .stats
-  = link_to following_user_path(@user) do
+  = link_to(following_user_path(@user)) do
     %strong#following.stat
       = @user.following.count
     フォロー中
   .vr
-  = link_to followers_user_path(@user) do
+  = link_to(followers_user_path(@user)) do
     %strong#followers.stat
       = @user.followers.count
     フォロワー
