@@ -14,7 +14,7 @@
   .field
     = f.label(:email, class: "form-label")
     %br/
-    = f.email_field(:email, autofocus: true, autocomplete: "email", class: "form-control")
+    = f.email_field(:email, autocomplete: "email", class: "form-control")
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
@@ -26,14 +26,9 @@
     = f.label(:password_confirmation, class: "form-label")
     %br/
     = f.password_field(:password_confirmation, autocomplete: "new-password", class: "form-control")
-  -# .field
-  -#   = f.label :current_password
-  -#   %i (we need your current password to confirm your changes)
-  -#   %br/
-  -#   = f.password_field :current_password, autocomplete: "current-password", class: "form-control"
   .actions.mt-2
     = f.submit("Update", class: "btn btn-primary")
-%h3 Cancel my account
+%h3 アカウントの削除
 %div
-  Unhappy? #{button_to("Cancel my account", registration_path(resource_name), class: "btn btn-primary", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete)}
+  #{button_to("Cancel my account", registration_path(resource_name), class: "btn btn-danger", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete)}
 = link_to("Back", :back)
