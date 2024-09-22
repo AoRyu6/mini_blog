@@ -4,12 +4,12 @@ class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @pagy, @posts = if params[:filter] == "following"
+    if params[:filter] == "following"
       # フォロー中のユーザーのポストのみ取得
-      pagy(Post.includes([:user]).where(user_id: current_user.following_ids).order(created_at: :desc))
+      @pagy, @posts = pagy(Post.includes([:user]).where(user_id: current_user.following_ids).order(created_at: :desc))
     else
       # すべてのポストを取得
-      pagy(Post.includes(:user).order(created_at: :desc))
+      @pagy, @posts = pagy(Post.includes(:user).order(created_at: :desc))
     end
 
     respond_to do |format|
