@@ -32,6 +32,13 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    @post = Post.find(params[:id])
+    @user = @post.user
+    # @comment = current_user.comments.new(post: @post)
+    @like = @post.likes.count
+  end
+
   private
 
   def post_params

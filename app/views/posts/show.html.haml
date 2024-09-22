@@ -1,0 +1,10 @@
+.pt-4
+  .border.rounded.p-2
+    %i.bi.bi-person-circle.display-6
+    %h2= @user.name
+    = @post.content
+
+    %time.text-muted.small{ datetime: @post.created_at.to_fs(:iso8601) }= l(@post.created_at, format: :long)
+
+    %i.bi.bi-heart{ aria_hidden: "true", style: "color: blue;" }
+    = @post.likes.count
