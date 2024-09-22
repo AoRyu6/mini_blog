@@ -19,7 +19,7 @@
                 %div
                   %time.text-muted.small{ datetime: post.created_at.to_fs(:iso8601) }= l(post.created_at, format: :long)
 
-                = render 'posts/post', post: post  # This line is now outside of the if condition
+                = render("posts/post", post: post) # This line is now outside of the if condition
 
       .mt-4
         = pagy_bootstrap_nav(@pagy).html_safe
