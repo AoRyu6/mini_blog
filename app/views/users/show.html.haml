@@ -1,12 +1,12 @@
-.mt-5
+.mt-4
   %div.row
-    %div.col-12.col-md-4
-      %div.d-flex.align-items-start.border.p-2.rounded
-        %i.bi.bi-person-circle.display-4.me-3
+    %div.col-12.col-md-6.col-lg-4
+      %div.d-flex.flex-column.flex-md-row.align-items-start.border.p-2.rounded
+        %i.bi.bi-person-circle.display-4.me-md-3.mb-2.mb-md-0
         %div
           %h3.mb-0= @user.name
           %span.text-muted= @user.biography
-          = link_to(@user.blog_url.to_s, class: "link-primary d-flex align-items-center") do
+          = link_to(@user.blog_url.to_s, class: "link-primary d-flex align-items-center mt-2") do
             %span.bi.bi-link-45deg.me-2.text-secondary{ aria: { label: "Link icon" } }
               = @user.blog_url
           = render("shared/stats")
@@ -15,13 +15,8 @@
             .mt-2
               = link_to("プロフィールの編集", edit_user_registration_path, class: "btn btn-dark btn-sm")
 
-    %div.col-12.col-md-8
-      %div.d-flex.flex-wrap
-        %ul.list-group.w-100
-          - @posts.each do |post|
-            %li.list-group-item
-              %span= post.content
-              %time.mb-1.small{ datetime: post.created_at.to_fs(:iso8601) }= l(post.created_at, format: :long)
+    %div.col-12.col-md-6.col-lg-8
+      = render 'shared/posts'
 
       .mt-2
         = pagy_bootstrap_nav(@pagy).html_safe
