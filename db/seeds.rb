@@ -21,8 +21,16 @@ User.create!(
   biography: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true),
 )
 
+User.create!(
+  name: "aaa",
+  email: "user2@example.com",
+  password: "password",
+  blog_url: "example.com",
+  biography: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true),
+)
+
 # nameはアルファベットのみしか許容しない
-100.times do
+50.times do
   length = rand(1..20)
   User.create!(
     name: Faker::Alphanumeric.alpha(number: length),

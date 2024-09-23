@@ -8,7 +8,9 @@ class CommentsController < ApplicationController
     @comment.post_id = @post.id
 
     if @comment.save
-      redirect_to(post_url(@post), alert: "Failed to create")
+      # CommentMailer.with(user: @user).comment_email.deliver_now
+      CommentMailer.comment_email(@post.user, @post).deliver_now
+      redirect_to(post_url(@post))
     else
       redirect_to(request.referer)
     end
