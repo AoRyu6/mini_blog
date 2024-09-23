@@ -1,20 +1,30 @@
-.pt-4
-  .border.rounded.p-2
-    %i.bi.bi-person-circle.display-6
-    %h2= @user.name
-    = @post.content
+.container.pt-4
+  .row
+    .col-md-8.offset-md-2
+      .border.rounded.p-2
+        .d-flex.align-items-center.mb-2
+          %i.bi.bi-person-circle.display-6.me-2
+          %h2.mb-0= @user.name
+        %p.mt-2= @post.content
+        - if @post.image.attached?
+          .my-3
+            = image_tag @post.image.variant(:display), class: "img-fluid rounded"
 
-    %time.text-muted.small{ datetime: @post.created_at.to_fs(:iso8601) }= l(@post.created_at, format: :long)
+        %time.text-muted.small{ datetime: @post.created_at.to_fs(:iso8601) }= l(@post.created_at, format: :long)
 
-    %i.bi.bi-heart{ aria_hidden: "true", style: "color: blue;" }
-    = @post.likes.count
-    = link_to("コメント返信", new_post_comment_path(@post))
+        .d-flex.align-items-center.mt-2
+          %i.bi.bi-heart{ aria_hidden: "true", style: "color: blue;" }
+          %span.ms-2= @post.likes.count
+          = link_to("コメント返信", new_post_comment_path(@post), class: "btn btn-outline-primary btn-sm ms-3")
 
-- @comments.each do |comment|
-  .pt-4
-    .border.rounded.p-2
-      %i.bi.bi-person-circle.display-6
-      %span= comment.user.name
-      %p= comment.body
-      %time.text-muted.small{ datetime: comment.created_at.to_fs(:iso8601) }= l(comment.created_at, format: :long)
-      = link_to("コメント返信", new_post_comment_path(@post))
+  .row
+    .col-md-8.offset-md-2
+      - @comments.each do |comment|
+        .pt-4
+          .border.rounded.p-2
+            .d-flex.align-items-center.mb-2
+              %i.bi.bi-person-circle.display-6.me-2
+              %span= comment.user.name
+            %p.mt-2= comment.body
+            %time.text-muted.small{ datetime: comment.created_at.to_fs(:iso8601) }= l(comment.created_at, format: :long)
+            = link_to("コメント返信", new_post_comment_path(@post), class: "btn btn-outline-primary btn-sm mt-2")
