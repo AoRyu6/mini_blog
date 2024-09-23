@@ -2,5 +2,5 @@
 
 require "rails_helper"
 
-RSpec.describe(PostComment, type: :model) do
+RSpec.describe(Comment, type: :model) do
 end

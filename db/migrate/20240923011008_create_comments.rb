@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-class CreatePostComments < ActiveRecord::Migration[7.2]
+class CreateComments < ActiveRecord::Migration[7.2]
   def change
-    create_table(:post_comments) do |t|
+    create_table(:comments) do |t|
       t.references(:user, null: false, foreign_key: true)
-      t.text(:comment, null: false, default: "")
+      t.text(:body, null: false, default: "")
       t.references(:post, null: false, foreign_key: true)
 
       t.timestamps
