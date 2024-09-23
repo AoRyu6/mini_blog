@@ -8,3 +8,13 @@
 
     %i.bi.bi-heart{ aria_hidden: "true", style: "color: blue;" }
     = @post.likes.count
+    = link_to("コメント返信", new_post_comment_path(@post))
+
+- @comments.each do |comment|
+  .pt-4
+    .border.rounded.p-2
+      %i.bi.bi-person-circle.display-6
+      %span= comment.user.name
+      %p= comment.body
+      %time.text-muted.small{ datetime: comment.created_at.to_fs(:iso8601) }= l(comment.created_at, format: :long)
+      = link_to("コメント返信", new_post_comment_path(@post))
