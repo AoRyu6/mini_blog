@@ -7,7 +7,6 @@
         - if user_signed_in?
           = link_to("全ての投稿", posts_path, class: "btn btn-secondary", data: { turbo_frame: "posts_frame" })
           = link_to("フォロー中のみ", posts_path(filter: "following"), class: "btn btn-primary", data: { turbo_frame: "posts_frame" })
-
       = render 'shared/posts'
 
       .mt-4

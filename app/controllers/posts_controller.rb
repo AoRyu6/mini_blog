@@ -44,6 +44,13 @@ class PostsController < ApplicationController
     @comments = @post.comments.all
   end
 
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy!
+    # redirect_to(root_url, status: :see_other)
+    redirect_to(request.referer)
+  end
+
   private
 
   def post_params
