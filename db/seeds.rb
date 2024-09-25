@@ -52,3 +52,11 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+posts = Post.all
+posts.each do |post|
+  # ランダムなユーザーが「いいね」を付ける
+  users.sample(rand(1..20)).each do |user|
+    user.likes.create!(post: post)
+  end
+end

@@ -18,4 +18,11 @@ class Post < ApplicationRecord
   def liked_by?(user)
     likes.exists?(user_id: user.id)
   end
+
+  scope :top_liked, -> {
+    joins(:likes)
+      .group("posts.id")
+      .order("COUNT(likes.id) DESC")
+      .limit(10)
+  }
 end

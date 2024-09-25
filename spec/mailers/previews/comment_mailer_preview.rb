@@ -7,4 +7,11 @@ class CommentMailerPreview < ActionMailer::Preview
     post = user.posts.first
     CommentMailer.comment_email(user, post)
   end
+
+  def send_top_liked_posts_email
+    user = User.first
+    posts = Post.all
+    @posts = posts.top_liked
+    CommentMailer.send_top_liked_posts_email(user)
+  end
 end
