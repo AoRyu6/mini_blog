@@ -2,8 +2,9 @@
 
 = form_with(model: @post, class: "form-horizontal") do |f|
   - if @post.errors.any?
-    = render 'errors'
+    = render("errors")
   .form-group
-    = f.label :content
-    = f.text_field :content,class: "form-control"
-  = f.submit class: "btn btn-primary"
+    = f.label(:content)
+    = f.text_field(:content, class: "form-control")
+    = f.file_field :image,accept: "image/jpeg,image/gif,image/png"
+  = f.submit(class: "btn btn-primary")

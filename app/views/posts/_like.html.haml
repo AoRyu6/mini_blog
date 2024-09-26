@@ -1,0 +1,14 @@
+- if user_signed_in?
+  - if post.liked_by?(current_user)
+    = link_to(post_like_path(post), data: { turbo_method: :delete }) do
+      %i.bi.bi-heart{ aria_hidden: "true", style: "color: red;" }
+      = post.likes.count
+  - else
+    = link_to(post_like_path(post), data: { turbo_method: :post }) do
+      %i.bi.bi-heart{ aria_hidden: "true" }
+      = post.likes.count
+- else
+  = link_to do
+    %i.bi.bi-heart{ aria_hidden: "true" }
+    = post.likes.count
+  %p.text-muted

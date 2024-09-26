@@ -21,8 +21,16 @@ User.create!(
   biography: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true),
 )
 
+User.create!(
+  name: "aaa",
+  email: "user2@example.com",
+  password: "password",
+  blog_url: "example.com",
+  biography: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true),
+)
+
 # nameはアルファベットのみしか許容しない
-100.times do
+50.times do
   length = rand(1..20)
   User.create!(
     name: Faker::Alphanumeric.alpha(number: length),
@@ -44,3 +52,11 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+posts = Post.all
+posts.each do |post|
+  # ランダムなユーザーが「いいね」を付ける
+  users.sample(rand(1..20)).each do |user|
+    user.likes.create!(post: post)
+  end
+end

@@ -3,20 +3,11 @@
 .mt-5
   %div.row.justify-content-center
     %div.col-md-8
-      - if user_signed_in?
-        %turbo-frame#posts_links
-          = link_to "全ての投稿", posts_path, class: "btn btn-secondary", data: { turbo_frame: "posts_frame" }
-          = link_to "フォロー中のみ", posts_path(filter: "following"), class: "btn btn-primary", data: { turbo_frame: "posts_frame" }
+      %turbo-frame#posts_links
+        - if user_signed_in?
+          = link_to("全ての投稿", posts_path, class: "btn btn-secondary", data: { turbo_frame: "posts_frame" })
+          = link_to("フォロー中のみ", posts_path(filter: "following"), class: "btn btn-primary", data: { turbo_frame: "posts_frame" })
+      = render 'shared/posts'
 
-      %turbo-frame#posts_frame
-        %ul.list-group.shadow-sm
-          - @posts.each do |post|
-            .list-group-item.list-group-item-action.border-0.mb-3.rounded
-              .d-flex.justify-content-between.align-items-center
-                %div
-                  = link_to post.user.name, user_path(post.user), class: "mb-1 font-weight-bold", data: { turbo_frame: "_top" }
-                  %p.text-muted.mb-1= post.content
-                %div.text-end
-                  %time.text-muted.small{ datetime: post.created_at.to_fs(:iso8601) }= l(post.created_at, format: :long)
-        .mt-4
-          = pagy_bootstrap_nav(@pagy).html_safe
+      .mt-4
+        = pagy_bootstrap_nav(@pagy).html_safe

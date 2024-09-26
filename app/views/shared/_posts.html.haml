@@ -1,0 +1,24 @@
+%turbo-frame#posts_frame
+  %ul.list-group.shadow-sm
+    - @posts.each do |post|
+      .list-group-item.list-group-item-action.border-0.mb-3.rounded
+        .justify-content-between.align-items-center
+          %div
+            = link_to(post.user.name, user_path(post.user), class: "mb-1 font-weight-bold", data: { turbo_frame: "_top" })
+            = link_to post_path(post),data: { turbo: false}, class: "d-block text-decoration-none" do
+              %p.text-muted.mb-1= post.content
+            - if post.image.attached?
+              .my-3
+                = image_tag post.image.variant(:display), class: "img-fluid rounded"
+
+
+          = render("posts/post", post: post)
+          = link_to("コメント返信", new_post_comment_path(post),data: { turbo: false}, class: "btn btn-outline-primary btn-sm mt-2")
+          - if post.user == current_user
+            = button_to("削除", post_path(post), method: :delete, data: {turbo: false }, class: "btn btn-outline-danger btn-sm mt-1")
+
+
+
+
+          %div
+            %time.text-muted.small{ datetime: post.created_at.to_fs(:iso8601) }= l(post.created_at, format: :long)

@@ -1,0 +1,7 @@
+%h2 コメントを追加
+
+= form_with model: [@post, @post.comments.new] do |f|
+  = f.label :body, class: "form-label"
+  = f.text_field :body, class: "form-control"
+  .pt-2
+    = f.submit "送信",data: { turbo: false }, class: "btn btn-primary"
