@@ -1,24 +1,26 @@
-# README
+# ソニックガーデンキャンプ mini_blog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## ローカル環境でのセットアアップ
 
-Things you may want to cover:
+必要な環境
 
-* Ruby version
+- Ruby3.3.5
+- Docker
 
-* System dependencies
+手順
 
-* Configuration
+1. 以下のコマンドでDockerコンテナを起動します
 
-* Database creation
+```sh
+docker compose up
+```
 
-* Database initialization
+2. コンテナが起動したら、次のコマンドでセットアップを実行します
 
-* How to run the test suite
+```sh
+bin/setup
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## デモサイト
 
-* Deployment instructions
-
-* ...
+<https://mini-blog-p2yq.onrender.com>
