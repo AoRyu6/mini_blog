@@ -49,6 +49,8 @@ gem "devise-i18n"
 gem "active_storage_validations"
 
 gem "whenever", require: false
+gem "faker"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: [:mri, :windows], require: "debug/prelude"
@@ -62,7 +64,6 @@ group :development, :test do
   gem "rubocop-factory_bot", require: false
 
   gem "rspec-rails"
-  gem "faker"
   gem "factory_bot_rails"
 
   gem "haml_lint", require: false
