@@ -7,8 +7,7 @@ fi
 
 # If running the rails server then create or migrate existing database
 if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
-  DISABLE_DATABASE_ENVIRONMENT_CHECK=1
-  bundle exec rails db:migrate:reset
+  DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:migrate:reset
   bundle exec rails db:seed
 fi
 
