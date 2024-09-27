@@ -24,3 +24,8 @@ bin/setup
 ## デモサイト
 
 <https://mini-blog-p2yq.onrender.com>
+
+## デモ動画
+
+https://github.com/user-attachments/assets/c9c9418f-3c77-46a2-a4ee-6500cd323154
+
